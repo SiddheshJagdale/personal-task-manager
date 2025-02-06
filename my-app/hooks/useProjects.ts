@@ -4,7 +4,7 @@ import axios from "axios";
 import { Project } from "@/ReactQuery/types/allProjects"; // Import Project type
 
 const fetchProjects = async (userId: string) => {
-  const response = await axios.get(`/api/allProjects/${userId}`);
+  const response = await axios.get(`/api/allprojects/${userId}`);
   return response.data; // Return the list of projects
 };
 

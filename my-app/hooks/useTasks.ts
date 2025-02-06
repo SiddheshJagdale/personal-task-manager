@@ -3,7 +3,7 @@ import axios from "axios";
 import { Task } from "@/ReactQuery/types/allTasks"; // Import Task type
 
 const fetchTasks = async (projectId: string, userId: string) => {
-  const response = await axios.get(`/api/allTasks/${projectId}/${userId}`);
+  const response = await axios.get(`/api/alltasks/${projectId}/${userId}`);
   return response.data; // Return the list of tasks
 };
 

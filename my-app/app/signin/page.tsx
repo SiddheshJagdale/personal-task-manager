@@ -46,7 +46,9 @@ export default function SignIn() {
       try {
         await mutateAsync({ email, password }); // Trigger the mutation with user data
       } catch (error) {
-        // Error handling is managed by React Query's onError
+        if (error instanceof Error) {
+          toast.error("Some error occured while loggin in.");
+        }
       } finally {
         toast.dismiss(loadingToast); // Dismiss loading state regardless of success or failure
       }

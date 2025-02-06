@@ -60,6 +60,7 @@ const AddTaskModal = () => {
       }
     }
   }, [
+    id,
     newTask,
     addTask,
     closeAddTask,

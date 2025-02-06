@@ -1,11 +1,11 @@
 // app/api/allTasks/[projectId]/[userId]/route.ts
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { db } from "@/db/index"; // Assuming db is set up for PostgreSQL or Drizzle ORM
 import { eq } from "drizzle-orm"; // For query filtering with Drizzle ORM
 import { tasks } from "@/db/schema"; // Assuming tasks schema is defined in your Drizzle ORM setup
-
+import { and } from "drizzle-orm";
 export async function GET(
-  req: Request,
+  req: NextRequest,
   context: { params: { projectId: string; userId: string } }
 ) {
   const { projectId, userId } = await context.params; // Retrieve projectId and userId from URL params
@@ -22,8 +22,7 @@ export async function GET(
     const userTasks = await db
       .select()
       .from(tasks)
-      .where(eq(tasks.projectId, projectId));
-    // .andWhere(eq(tasks.userId, userId));
+      .where(and(eq(tasks.userId, userId), eq(tasks.projectId, projectId)));
 
     return NextResponse.json(userTasks);
   } catch (error) {

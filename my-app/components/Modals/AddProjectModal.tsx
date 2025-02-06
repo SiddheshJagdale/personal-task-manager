@@ -58,7 +58,9 @@ const AddProjectModal = () => {
         userId: currentUser?.id,
       });
     } catch (error) {
-      // Error handling is done in onError of the mutation
+      if (error instanceof Error) {
+        toast.error("Some error occured while creating project.");
+      }
     }
   }, [newProject, currentUser, mutateAsync]); // Removed closeAddProject from dependencies
 

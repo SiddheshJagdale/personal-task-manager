@@ -73,18 +73,19 @@ const EditProjectModal = () => {
         userId: currentUser?.id, // Ensure it's associated with the logged-in user
       });
     } catch (error) {
-      toast.error("An error occurred while updating the project");
+      if (error instanceof Error) {
+        toast.error("An error occurred while updating the project");
+      }
     }
   }, [
     name,
     description,
     priority,
     status,
-    id, // Ensure the project ID is passed correctly
+    id, 
     currentUser?.id,
     mutateAsync,
-    refetch,
-    editProjectData?.createdAt, // Added the missing dependency
+    editProjectData?.createdAt,
   ]);
 
   const Body = (

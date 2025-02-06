@@ -87,7 +87,9 @@ const EditTaskModal = () => {
         projectId,
       });
     } catch (error) {
-      toast.error("An error occurred while updating the task");
+      if (error instanceof Error) {
+        toast.error("An error occurred while updating the task");
+      }
     }
   }, [
     title,
