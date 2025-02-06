@@ -1,14 +1,19 @@
-import { NextAuthOptions } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { SupabaseAdapter } from "@next-auth/supabase-adapter";
+import bcrypt from "bcrypt";
 import { db } from "@/db/index";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import bcrypt from "bcrypt";
+import { supabase } from "@/db/index";
+
+// Initialize Supabase Client
 
 export const authOptions: NextAuthOptions = {
   providers: [
+    // 🟢 Credentials Provider (Email & Password Auth)
     CredentialsProvider({
-      name: "credentials",
+      name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
@@ -43,6 +48,14 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
+  // 🟢 Supabase Adapter for OAuth & Session Management
+  adapter: SupabaseAdapter({
+    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  }),
+
+  session: { strategy: "jwt" },
+
   callbacks: {
     async signIn({ account, user }) {
       try {
@@ -55,6 +68,7 @@ export const authOptions: NextAuthOptions = {
         return false;
       }
     },
+
     async redirect({ baseUrl }) {
       return `${baseUrl}/main`;
     },
@@ -66,6 +80,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
+
     async session({ session, token }) {
       if (session?.user) {
         session.user.email = token.email;
@@ -73,14 +88,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+
   debug: process.env.NODE_ENV === "development",
-  session: {
-    strategy: "jwt",
-    maxAge: 60 * 60 * 24,
-  },
-  jwt: {
-    secret: process.env.NEXTAUTH_JWT_SECRET,
-    maxAge: 60 * 60 * 24,
-  },
   secret: process.env.NEXTAUTH_SECRET,
 };
