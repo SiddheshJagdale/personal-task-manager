@@ -40,7 +40,7 @@ const Dashboard = () => {
   return (
     <div className="p-2 md:p-3 lg:p-4 w-full h-auto">
       {/* Top Section */}
-      <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
+      <div className="flex flex-col md:flex-row justify-between gap-4 mb-4">
         <Banner />
         <TaskCalendar />
       </div>

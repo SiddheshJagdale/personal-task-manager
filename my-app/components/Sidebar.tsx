@@ -109,7 +109,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
               <button
                 key={tab.value} // ✅ Unique key fix
                 onClick={() => handleTabClick(tab.value)}
-                className="text-lg py-1 px-6 rounded-md transition-colors duration-200 text-gray-500 hover:bg-gray-600 hover:text-white"
+                className="text-lg py-1 px-6 rounded-md transition-colors duration-200 text-gray-500 hover:bg-blue-500 hover:text-white"
               >
                 {tab.name}
               </button>

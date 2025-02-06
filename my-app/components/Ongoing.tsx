@@ -16,10 +16,12 @@ const Ongoing = () => {
     error,
   } = useTasks(selectedProjectId as string, currentUser?.id);
 
+  // Loading state
   if (isLoading) {
     return <div>Loading tasks...</div>;
   }
 
+  // Error handling
   if (error) {
     return <div>Error fetching tasks: {error.message}</div>;
   }
@@ -28,21 +30,25 @@ const Ongoing = () => {
   const ongoingTasks = tasks?.filter((task: Task) => !task.completed) || [];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div className="w-full h-full">
       {ongoingTasks.length > 0 ? (
-        ongoingTasks.map((task: Task) => (
-          <TaskCard
-            key={task.id}
-            title={task.title}
-            description={task.description || ""}
-            isCompleted={task.completed}
-            isImportant={task.isImportant}
-            duedate={task.dueDate || "No due date"}
-            id={task.id}
-          />
-        ))
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+          {ongoingTasks.map((task: Task) => (
+            <TaskCard
+              key={task.id}
+              title={task.title}
+              description={task.description || ""}
+              isCompleted={task.completed}
+              isImportant={task.isImportant}
+              duedate={task.dueDate || "No due date"}
+              id={task.id}
+            />
+          ))}
+        </div>
       ) : (
-        <p>No ongoing tasks available</p>
+        <div className="flex flex-col w-full h-full p-6 justify-center items-center">
+          <p className="text-xl text-black">No ongoing tasks available</p>
+        </div>
       )}
     </div>
   );

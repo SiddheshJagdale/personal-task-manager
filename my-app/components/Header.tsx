@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 
   return (
     <div className="flex flex-row justify-between items-center h-auto w-full mb-3 ">
-      <div className="flex flex-row max-w-3xl bg-gray-600 w-full rounded-md px-3 py-2">
+      <div className="flex lg:justify-start justify-end flex-row max-w-3xl bg-gray-600 w-full rounded-md px-3 py-2">
         <h1 className="text-xl font-semibold text-gray-200  ">
           {headerTitle()}
         </h1>

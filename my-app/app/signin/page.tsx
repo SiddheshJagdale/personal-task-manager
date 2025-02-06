@@ -27,7 +27,7 @@ export default function SignIn() {
       }
 
       toast.success("Logged in successfully");
-      router.push("/main"); // Redirect after success
+      router.push("/"); // Redirect after success
     },
     onError: (error: unknown) => {
       toast.error(error instanceof Error ? error.message : "Login failed");

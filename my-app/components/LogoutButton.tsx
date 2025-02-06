@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {
   const router = useRouter();
+
   const handleClick = useCallback(async () => {
     await signOut();
     router.push("/");

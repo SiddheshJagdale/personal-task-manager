@@ -9,6 +9,7 @@ import { deleteTask } from "@/ReactQuery/mutations/deleteTask";
 import { useProjectStore } from "@/zustand/useProjectStore";
 import { useTasks } from "@/hooks/useTasks";
 import useCurrentUser from "@/hooks/useCurrentuser";
+import { format } from "date-fns"; // Import date-fns for date formatting
 
 interface TaskCardProps {
   title: string;
@@ -57,6 +58,9 @@ const TaskCard: React.FC<TaskCardProps> = ({
     await mutateAsync({ projectId: selectedProjectId as string, taskId: id });
   };
 
+  // Format the due date to a more readable format
+  const formattedDate = format(new Date(duedate), "MMMM dd, yyyy");
+
   return (
     <div className="flex flex-col h-full w-full p-6 bg-white rounded-2xl shadow-lg border border-neutral-200">
       <div className="flex justify-between items-center mb-4">
@@ -67,7 +71,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       </div>
       <p className="text-sm text-gray-600 mb-4">{description}</p>
       <div className="flex items-center mb-4">
-        <span className="text-xs text-gray-400">Due: {duedate}</span>
+        <span className="text-xs text-gray-400">Due: {formattedDate}</span>
       </div>
 
       <div className="flex items-center justify-between mt-4 space-x-3">

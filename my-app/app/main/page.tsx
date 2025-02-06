@@ -45,7 +45,7 @@ const Main = () => {
 
       {/* Main Content */}
       <main className="flex-1 p-1 md:p-2">
-        <div className="h-full bg-gray-200 rounded-lg shadow-sm p-2 md:p-3 lg:p-4">
+        <div className="lg:h-full h-screen w-full bg-gray-200 rounded-lg shadow-sm p-2 md:p-3 lg:p-4">
           <Header title={activeTab} />
           <div className="h-[calc(100%-4rem)] overflow-y-auto">
             {renderContent()}

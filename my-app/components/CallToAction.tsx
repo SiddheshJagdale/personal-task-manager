@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const CallToAction = () => {
   const router = useRouter();
   const handleClick = useCallback(() => {
-    router.push("/signin");
+    router.push("/signup");
   }, [router]);
 
   return (

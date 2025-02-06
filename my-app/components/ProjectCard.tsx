@@ -13,6 +13,7 @@ import { useProjectStore } from "@/zustand/useProjectStore";
 import { deleteProject } from "@/ReactQuery/mutations/deleteProject";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
+import { format } from "date-fns"; // Import date-fns for date formatting
 
 interface ProjectCardProps {
   id: string;
@@ -84,6 +85,8 @@ const ProjectCard = ({
     }
   }, [id, mutateAsync]); // Add 'id' to dependencies
 
+  const formattedDate = format(new Date(createdAt), "MMMM dd, yyyy");
+
   return (
     <div
       className={`flex flex-col bg-white rounded-2xl shadow-lg p-6 w-full max-w-4xl border
@@ -113,9 +116,7 @@ const ProjectCard = ({
       </div>
 
       <p className="text-gray-600 text-lg mb-4">{description}</p>
-      <p className="text-sm text-gray-500">
-        Created on: {new Date(createdAt).toLocaleDateString()}
-      </p>
+      <p className="text-sm text-gray-500">Created on: {formattedDate}</p>
 
       <div className="mt-4 flex items-center space-x-3">
         <span className="text-sm font-semibold text-gray-700">Status:</span>

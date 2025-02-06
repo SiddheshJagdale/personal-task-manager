@@ -14,7 +14,7 @@ const Navbar = () => {
     if (currentUser) {
       router.push("/main");
     } else {
-      router.push("/signin");
+      router.push("/signup");
     }
   };
 
