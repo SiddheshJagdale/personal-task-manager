@@ -10,6 +10,7 @@ import { useProjects } from "@/hooks/useProjects";
 
 // Define the priority type explicitly
 type Priority = "low" | "medium" | "high";
+type Status = "ongoing" | "completed" ;
 
 const AddProjectModal = () => {
   const {
@@ -53,7 +54,7 @@ const AddProjectModal = () => {
         name: newProject.name,
         description: newProject.description,
         priority: (newProject.priority as Priority) || "medium",
-        status: newProject.status || "ongoing",
+        status: (newProject.status as Status) || "ongoing",
         createdAt: new Date().toISOString(),
         userId: currentUser?.id,
       });

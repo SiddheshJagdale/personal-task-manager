@@ -1,7 +1,7 @@
 // libs/serverAuth.ts
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"; // Adjust if necessary
+import { authOptions } from "@/libs/authOptions"; // Adjust if necessary
 import { db } from "@/db"; // Ensure this points to your Drizzle DB configuration
 import { users } from "@/db/schema"; // Assuming you have a `users` table defined in your Drizzle schema
 import { eq } from "drizzle-orm";

@@ -46,7 +46,7 @@ export async function POST(req: Request) {
         title,
         description,
         dueDate: new Date(dueDate),
-        isCompleted,
+        completed: isCompleted, // Use 'completed' instead of 'isCompleted'
         userId,
         projectId,
         isImportant: important,

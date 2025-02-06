@@ -4,7 +4,10 @@ import { projects } from "@/db/schema"; // Projects table schema
 import { ProjectData } from "@/ReactQuery/types/addProject"; // Project data type
 import { eq } from "drizzle-orm"; // Equality operator for filtering
 
-export async function PUT(req: Request, context: { params: { id: string } }) {
+export async function PUT(
+  req: Request,
+  context: { params: Promise<{ id: string }> }
+) {
   const { id } = await context.params; // Destructure the id directly from params
   const { name, description, status, priority, userId }: ProjectData =
     await req.json(); // Extract data from the request body

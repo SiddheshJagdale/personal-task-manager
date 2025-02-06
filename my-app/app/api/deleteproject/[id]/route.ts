@@ -5,12 +5,12 @@ import { eq } from "drizzle-orm";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const projectId = await params.id;
+    const { id } = await params;
 
-    if (!projectId) {
+    if (!id) {
       return NextResponse.json(
         { error: "Project ID is required" },
         { status: 400 }
@@ -18,7 +18,7 @@ export async function DELETE(
     }
 
     // Delete project from DB
-    await db.delete(projects).where(eq(projects.id, projectId));
+    await db.delete(projects).where(eq(projects.id, id));
 
     return NextResponse.json(
       { message: "Project deleted successfully" },

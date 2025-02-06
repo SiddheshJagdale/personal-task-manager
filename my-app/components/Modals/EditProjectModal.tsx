@@ -8,7 +8,7 @@ import { useProjects } from "@/hooks/useProjects";
 import { useProjectStore } from "@/zustand/useProjectStore";
 
 type Priority = "low" | "medium" | "high";
-type Status = "ongoing" | "completed" | "paused";
+type Status = "ongoing" | "completed";
 
 const EditProjectModal = () => {
   const {

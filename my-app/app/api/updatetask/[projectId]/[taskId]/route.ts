@@ -2,12 +2,13 @@ import { NextResponse, NextRequest } from "next/server";
 import { db } from "@/db/index";
 import { tasks } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { and } from "drizzle-orm";
 
 export async function PUT(
   req: NextRequest,
-  context: { params: { taskId: string; projectId: string } }
+  context: { params: Promise<{ taskId: string; projectId: string }> }
 ) {
-  const { taskId } = context.params;
+  const { taskId, projectId } = await context.params;
   const body = await req.json();
   const { title, description, dueDate, completed, isImportant } = body;
 
@@ -24,7 +25,7 @@ export async function PUT(
     const result = await db
       .update(tasks)
       .set(updateData)
-      .where(eq(tasks.id, taskId));
+      .where(and(eq(tasks.id, taskId), eq(tasks.projectId, projectId)));
 
     if (!result) {
       throw new Error("No task found");

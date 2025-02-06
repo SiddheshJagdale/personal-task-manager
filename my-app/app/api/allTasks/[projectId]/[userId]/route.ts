@@ -6,7 +6,7 @@ import { tasks } from "@/db/schema"; // Assuming tasks schema is defined in your
 import { and } from "drizzle-orm";
 export async function GET(
   req: NextRequest,
-  context: { params: { projectId: string; userId: string } }
+  context: { params: Promise<{ projectId: string; userId: string }> }
 ) {
   const { projectId, userId } = await context.params; // Retrieve projectId and userId from URL params
 

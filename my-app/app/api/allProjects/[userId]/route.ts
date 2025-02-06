@@ -5,10 +5,10 @@ import { projects } from "@/db/schema";
 
 export async function GET(
   req: NextRequest,
-  context: { params: { userId: string } } // Explicitly type the context parameter
+  { params }: { params: Promise<{ userId: string }> } // Correctly type the context parameter
 ) {
-  // Correctly destructure params without `await`
-  const { userId } = context.params;
+  // Await the params
+  const { userId } = await params;
 
   if (!userId) {
     return NextResponse.json({ error: "User ID is required" }, { status: 400 });

@@ -35,7 +35,7 @@ const Projects = () => {
       // Ensure that the status and priority are correctly typed before passing to the store
       const typedProjects = projects.map((project) => ({
         ...project,
-        status: project.status as "ongoing" | "completed" | "paused", // Assert status type
+        status: project.status as "ongoing" | "completed", // Assert status type
         priority: project.priority as "low" | "medium" | "high", // Assert priority type
       }));
       setProjects(typedProjects);
@@ -66,7 +66,7 @@ const Projects = () => {
             name={project.name}
             description={project.description}
             createdAt={project.createdAt}
-            status={project.status as "ongoing" | "completed" | "paused"} // Ensure correct type
+            status={project.status as "ongoing" | "completed"} // Ensure correct type
             priority={project.priority as "low" | "medium" | "high"} // Ensure correct type
           />
         ))

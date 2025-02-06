@@ -6,9 +6,9 @@ import { eq, and } from "drizzle-orm";
 // DELETE request handler
 export async function DELETE(
   req: Request,
-  { params }: { params: { projectId: string; taskId: string } }
+  { params }: { params: Promise<{ projectId: string; taskId: string }> }
 ) {
-  const { projectId, taskId } = params;
+  const { projectId, taskId } = await params;
 
   try {
     // Deleting the task from the tasks table and storing the result

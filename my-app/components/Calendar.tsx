@@ -8,7 +8,7 @@ import { useTaskStore } from "@/zustand/useTaskStore";
 
 const TaskCalendar = () => {
   const { selectedDate, setSelectedDate } = useTaskStore();
-  const [date, setDate] = useState<Date>(selectedDate || new Date());
+  const [date, setDate] = useState<Date>(selectedDate as Date);
 
   useEffect(() => {
     // Ensure a default selected date if none is set
@@ -30,7 +30,7 @@ const TaskCalendar = () => {
       setSelectedDate(value);
     } else {
       // If a range is selected, take the first date in the range
-      setDate(value[0]);
+      setDate(value[0] as Date);
       setSelectedDate(value[0]);
     }
   };
