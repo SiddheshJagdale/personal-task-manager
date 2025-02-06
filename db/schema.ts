@@ -3,6 +3,7 @@ import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
 // Users Table
 export const users = pgTable("users", {
   id: text("id").primaryKey(), // Use string and UUID generation
+  profileImage: text("profileImage"),
   name: text("name"),
   email: text("email").unique().notNull(),
   passwordHash: text("passwordHash").notNull(),
