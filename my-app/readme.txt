@@ -1,0 +1,9 @@
+Sidj@3534
+
+anon -eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzYXFkaGN2bmxvaGhvYnB0aHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg2NjI1NDUsImV4cCI6MjA1NDIzODU0NX0.lzLizfqjda7uJbwUfgh6cd1cTio9Ac7ia-TgVDdBj8k
+project-url - https://ksaqdhcvnlohhobpthqr.supabase.co
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzYXFkaGN2bmxvaGhvYnB0aHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg2NjI1NDUsImV4cCI6MjA1NDIzODU0NX0.lzLizfqjda7uJbwUfgh6cd1cTio9Ac7ia-TgVDdBj8k
+
+supabase_url =postgresql://postgres:[YOUR-PASSWORD]@db.ksaqdhcvnlohhobpthqr.supabase.co:5432/postgres
+
+Siddhesh!@3534
