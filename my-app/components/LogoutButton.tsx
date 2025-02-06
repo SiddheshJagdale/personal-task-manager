@@ -12,7 +12,7 @@ const LogoutButton = () => {
     await signOut();
     router.push("/");
     toast.success("Logged out");
-  }, [router, signOut]);
+  }, [router]);
 
   return (
     <Button variant="primary" size="large" onClick={handleClick}>

@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useCallback } from "react";
 import Modal from "./Modal";
 import { useProjectStore } from "@/zustand/useProjectStore";
@@ -36,7 +34,8 @@ const AddProjectModal = () => {
       closeAddProject();
       refetch();
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
+      // Used a specific Error type here
       console.error("Error adding project:", error);
       toast.error(error.message || "Failed to create project");
     },
@@ -61,7 +60,7 @@ const AddProjectModal = () => {
     } catch (error) {
       // Error handling is done in onError of the mutation
     }
-  }, [newProject, closeAddProject, currentUser, mutateAsync]);
+  }, [newProject, currentUser, mutateAsync]); // Removed closeAddProject from dependencies
 
   const Body = (
     <div className="flex flex-col gap-4 bg-white p-6 rounded-lg">

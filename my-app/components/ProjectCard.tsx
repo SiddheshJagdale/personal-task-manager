@@ -5,7 +5,6 @@ import {
   MdOutlinePendingActions,
   MdOutlinePriorityHigh,
 } from "react-icons/md";
-import { useTaskStore } from "@/zustand/useTaskStore"; // Import Zustand store
 import { toast } from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import useCurrentUser from "@/hooks/useCurrentuser";
@@ -45,7 +44,6 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   const { data: currentUser } = useCurrentUser();
   const { setSelectedProject, selectedProjectId } = useProjectStore();
-
   const { openEditProject } = useProjectStore();
 
   const handleEdit = () => {
@@ -62,13 +60,13 @@ const ProjectCard = ({
 
   const { refetch } = useProjects(currentUser?.id); // Refresh projects after delete
 
-  const { mutateAsync, isPending } = useMutation({
+  const { mutateAsync } = useMutation({
     mutationFn: deleteProject,
     onSuccess: () => {
       toast.success("Project deleted successfully!");
       refetch(); // Refresh project list
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       console.error("Error deleting project:", error);
       toast.error(error.message || "Failed to delete project");
     },
@@ -76,15 +74,15 @@ const ProjectCard = ({
 
   const handleDelete = useCallback(async () => {
     if (!id) {
-      return toast.error("Some error occured");
+      return toast.error("Some error occurred");
     }
     try {
-      mutateAsync(id);
+      await mutateAsync(id);
     } catch (err) {
       console.log(err);
-      toast.error(`Error:${err}`);
+      toast.error(`Error: ${err}`);
     }
-  }, [toast, mutateAsync]);
+  }, [id, mutateAsync]); // Add 'id' to dependencies
 
   return (
     <div

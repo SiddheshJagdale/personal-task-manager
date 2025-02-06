@@ -28,17 +28,19 @@ const EditProjectModal = () => {
 
   const title = "Edit Project";
 
-  const { mutateAsync, isPending, isError, error } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: updateProject,
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Project updated successfully!");
       refetch();
       resetNewProject(); // Reset the form state after successful submission
       closeEditProject(); // Close the modal
     },
-    onError: (error: any) => {
-      console.error("Error updating project:", error);
-      toast.error(error.message || "Failed to update project");
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        console.error("Error updating project:", error);
+        toast.error(error.message || "Failed to update project");
+      }
     },
   });
 
@@ -82,6 +84,7 @@ const EditProjectModal = () => {
     currentUser?.id,
     mutateAsync,
     refetch,
+    editProjectData?.createdAt, // Added the missing dependency
   ]);
 
   const Body = (

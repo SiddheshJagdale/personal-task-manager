@@ -45,8 +45,8 @@ export default function SignUp() {
         toast.success("User created successfully!");
         router.push("/signin");
       }
-    } catch (error: any) {
-      if (error.response?.status === 409) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
         toast.error("User already exists!");
       } else {
         toast.error("Something went wrong! Please try again.");

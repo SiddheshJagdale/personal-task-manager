@@ -30,12 +30,12 @@ export default function SignIn() {
       router.push("/main"); // Redirect after success
     },
     onError: (error: unknown) => {
-      toast.error(error.message || "Login failed");
+      toast.error(error instanceof Error ? error.message : "Login failed");
     },
   });
 
   const handleSubmit = useCallback(
-    async (e: any) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault(); // Prevent form submission from refreshing the page
 
       if (!email) return toast.error("Email cannot be empty");
@@ -98,7 +98,7 @@ export default function SignIn() {
           </button>
         </form>
         <p className="mt-4 text-gray-600 dark:text-gray-300">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/signup" className="text-blue-600">
             Sign Up
           </Link>

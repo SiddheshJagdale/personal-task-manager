@@ -9,6 +9,7 @@ const CallToAction = () => {
   const handleClick = useCallback(() => {
     router.push("/signin");
   }, [router]);
+
   return (
     <section className="py-16 bg-blue-600 text-white text-center w-full">
       <h2 className="text-3xl font-bold">Boost Your Productivity Today</h2>
@@ -16,12 +17,9 @@ const CallToAction = () => {
         Join thousands of users who rely on Task Flow to streamline their
         workflow.
       </p>
-      <Button
-        variant="secondary"
-        size="large"
-        onClick={handleClick}
-        children="GetStarted"
-      />
+      <Button variant="secondary" size="large" onClick={handleClick}>
+        GetStarted
+      </Button>
     </section>
   );
 };

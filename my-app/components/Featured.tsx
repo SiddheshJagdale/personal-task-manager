@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckCircle, Calendar, LayoutDashboard, Users } from "lucide-react";
+import { CheckCircle, Calendar, LayoutDashboard } from "lucide-react";
 
 const Featured = () => {
   return (

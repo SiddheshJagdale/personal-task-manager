@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useCallback } from "react";
 import Modal from "./Modal";
 import { toast } from "react-hot-toast";
@@ -29,7 +27,7 @@ const AddTaskModal = () => {
 
   const handleSubmit = useCallback(async () => {
     try {
-      const response = await axios.post("/api/addtask", {
+      await axios.post("/api/addtask", {
         id: id,
         title: newTask.title,
         description: newTask.description,
@@ -55,11 +53,21 @@ const AddTaskModal = () => {
       refetch();
       resetNewTask(); // Reset the form data
       closeAddTask(); // Close the modal after submission
-    } catch (error: any) {
-      console.error("Error adding task:", error);
-      toast.error(error.response?.data?.error || "Failed to create task");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error adding task:", error);
+        toast.error(error || "Failed to create task");
+      }
     }
-  }, [newTask, addTask, closeAddTask, resetNewTask, currentUser?.id]);
+  }, [
+    newTask,
+    addTask,
+    closeAddTask,
+    resetNewTask,
+    currentUser?.id,
+    selectedProjectId,
+    refetch,
+  ]);
 
   const Body = (
     <div className="flex flex-col gap-4 bg-white p-6 rounded-lg">

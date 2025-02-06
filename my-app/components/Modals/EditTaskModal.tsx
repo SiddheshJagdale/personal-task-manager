@@ -31,7 +31,7 @@ const EditTaskModal = () => {
   const titleText = "Edit Task";
 
   // Set up the mutation with React Query
-  const { mutateAsync, isPending, isError, error } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: updateTask,
     onSuccess: () => {
       toast.success("Task updated successfully!");

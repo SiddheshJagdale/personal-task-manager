@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ProjectData } from "@/ReactQuery/types/addProject"; // Reuse the same ProjectData type
 
 export const deleteProject = async (id: String) => {
   try {

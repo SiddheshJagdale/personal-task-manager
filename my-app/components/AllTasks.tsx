@@ -18,7 +18,7 @@ const AllTasks = () => {
 
   // ✅ Use useEffect to update Zustand store only when tasks change
   useEffect(() => {
-    if (Tasks?.length > 0) {
+    if (Array.isArray(Tasks) && Tasks.length > 0) {
       setTasks(Tasks);
     }
   }, [Tasks, setTasks]);

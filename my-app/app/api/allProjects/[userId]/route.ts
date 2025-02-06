@@ -7,7 +7,7 @@ export async function GET(
   req: NextRequest,
   context: { params: { userId: string } } // Explicitly type the context parameter
 ) {
-  const userId = await context.params.userId; // No `await`
+  const { userId } = await context.params; // No `await`
 
   if (!userId) {
     return NextResponse.json({ error: "User ID is required" }, { status: 400 });

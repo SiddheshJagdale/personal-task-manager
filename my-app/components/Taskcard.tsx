@@ -42,9 +42,14 @@ const TaskCard: React.FC<TaskCardProps> = ({
       toast.success("Task deleted successfully!");
       refetch();
     },
-    onError: (error: any) => {
-      console.error("Error deleting task:", error);
-      toast.error(error.message || "Failed to delete task");
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        console.error("Error deleting task:", error);
+        toast.error(error.message || "Failed to delete task");
+      } else {
+        console.error("An unknown error occurred", error);
+        toast.error("An unknown error occurred");
+      }
     },
   });
 
