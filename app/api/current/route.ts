@@ -5,10 +5,8 @@ import { NextResponse } from "next/server"; // Next.js App Router's response han
 
 export async function GET() {
   try {
-    // Fetch the current user using serverAuth
     const currentUser = await serverAuth();
 
-    // Return the current user data as JSON
     return NextResponse.json(currentUser, { status: 200 });
   } catch (err) {
     console.error(err);
