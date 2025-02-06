@@ -10,6 +10,7 @@ import { eq } from "drizzle-orm";
 const serverAuth = async () => {
   // Get the session using next-auth
   const session = await getServerSession(authOptions);
+  console.log(session);
 
   if (!session?.user?.email) {
     throw new Error("Not signed in");

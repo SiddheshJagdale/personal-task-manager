@@ -8,7 +8,9 @@ export async function POST(req: NextRequest) {
   try {
     const { email, password } = await req.json();
 
-    console.log(email);
+    // console.log(email);
+    // console.log(password);
+    // console.log("at api login");
 
     // Validate required fields
     if (!email || !password) {

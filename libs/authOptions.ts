@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 import { db } from "@/db/index";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { supabase } from "@/db/index";
 
 // Initialize Supabase Client
 
@@ -43,7 +42,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid Credentials");
         }
 
-        return { id: user[0].id.toString(), email: user[0].email };
+        return { id: user[0].id, email: user[0].email };
       },
     }),
   ],
@@ -76,13 +75,16 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.name = user.name;
         token.email = user.email;
+        token.picture = user.image;
       }
       return token;
     },
 
     async session({ session, token }) {
       if (session?.user) {
+        session.user.name = token.name;
         session.user.email = token.email;
       }
       return session;
