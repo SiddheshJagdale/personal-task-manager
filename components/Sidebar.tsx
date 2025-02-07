@@ -168,7 +168,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
       {!isOpen && (
         <button
           onClick={toggleSidebar}
-          className="fixed top-4 left-4 p-3 bg-neutral-800 rounded-md text-white shadow-md z-50 sm:hidden"
+          className="fixed top-4 left-4 p-3 bg-gray-700 rounded-md text-white shadow-md z-50 sm:hidden"
         >
           <GiHamburgerMenu size={24} />
         </button>
