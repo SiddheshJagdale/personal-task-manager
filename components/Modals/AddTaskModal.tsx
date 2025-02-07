@@ -35,7 +35,7 @@ const AddTaskModal = () => {
         important: newTask.isImportant,
         isCompleted: newTask.completed,
         userId: currentUser?.id,
-        projectId: selectedProjectId, // Replace with the actual projectId if needed
+        projectId: selectedProjectId as string, // Replace with the actual projectId if needed
       });
 
       // Add the task to Zustand store
