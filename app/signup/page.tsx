@@ -68,7 +68,7 @@ export default function SignUp() {
 
       {/* Right Section - Sign Up Form */}
       <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8 bg-white">
-        <h2 className="text-2xl font-bold text-blue-600">Sign Up</h2>
+        <h2 className="text-2xl font-bold text-black">Sign Up</h2>
         <form
           className="w-full max-w-sm mt-6 space-y-4"
           onSubmit={(e) => {
