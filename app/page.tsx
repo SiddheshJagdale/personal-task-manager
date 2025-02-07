@@ -12,9 +12,8 @@ export default function LandingPage() {
   return (
     <>
       {currentUser ? (
-        <div className="flex flex-col items-center w-full h-full">
+        <div className="flex flex-col items-center w-full h-screen">
           <Hero name={currentUser?.name} />
-          {/* <Hero name={currentUser?.name} /> */}
         </div>
       ) : (
         <div className="flex flex-col items-center w-full h-auto ">

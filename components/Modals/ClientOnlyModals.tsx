@@ -5,6 +5,7 @@ import AddTaskModal from "@/components/Modals/AddTaskModal";
 import AddProjectModal from "./AddProjectModal";
 import EditProjectModal from "./EditProjectModal";
 import EditTaskModal from "./EditTaskModal";
+import EditUserModal from "./EditUserModal";
 
 const ClientOnlyModal = () => {
   return (
@@ -13,6 +14,7 @@ const ClientOnlyModal = () => {
       <EditProjectModal />
       <AddProjectModal />
       <EditTaskModal />
+      <EditUserModal />
     </>
   );
 };

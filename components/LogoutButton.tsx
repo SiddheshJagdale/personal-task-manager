@@ -10,9 +10,14 @@ const LogoutButton = () => {
   const router = useRouter();
 
   const handleClick = useCallback(async () => {
-    await signOut();
-    router.push("/");
-    toast.success("Logged out");
+    try {
+      await signOut();
+      toast.success("Logged out");
+      router.push("/");
+    } catch (error) {
+      toast.error("Failed to log out");
+      console.error("Logout error:", error);
+    }
   }, [router]);
 
   return (

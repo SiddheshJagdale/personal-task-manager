@@ -6,6 +6,8 @@ import LogoutButton from "./LogoutButton";
 import useCurrentUser from "@/hooks/useCurrentuser";
 import { useProjectStore } from "@/zustand/useProjectStore";
 import { useProjects } from "@/hooks/useProjects";
+import useEditUser from "@/zustand/useUserStore";
+import Avatar from "./Avatar";
 
 const tabs = [
   { name: "Dashboard", value: "dashboard" },
@@ -25,7 +27,8 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null
   );
-
+  const [showUserInfo, setShowUserInfo] = useState(false); // State to toggle hover info
+  const userEditModal = useEditUser();
   const { data: currentUser } = useCurrentUser();
   const { projects, setSelectedProject, setProjects } = useProjectStore();
   const { data: Projects } = useProjects(currentUser?.id);
@@ -57,6 +60,11 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
     setSelectedProjectId(selectedId);
   };
 
+  const handleUserHover = () => setShowUserInfo(true);
+  const handleUserLeave = () => setShowUserInfo(false);
+
+  const handleEditClick = () => userEditModal.onOpen(); // Open modal on edit button click
+
   return (
     <>
       {isOpen && (
@@ -79,12 +87,44 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
             <IoMdClose />
           </div>
 
-          {/* Profile Section */}
-          <div className="mb-10 flex flex-col items-center gap-4">
-            <div className="bg-gray-400 h-12 w-12 rounded-full"></div>
-            <div className="text-black">
+          {/* Profile Section with hover effect */}
+          <div
+            className="mb-4 flex flex-col items-center gap-1 relative"
+            onMouseEnter={handleUserHover}
+            onMouseLeave={handleUserLeave}
+          >
+            <Avatar />
+            <div className="text-black text-center">
               <div className="text-lg font-medium">{currentUser?.name}</div>
             </div>
+
+            {/* Hovered User Information */}
+            {showUserInfo && (
+              <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 p-4 bg-white border shadow-lg rounded-lg w-48 sm:w-56 lg:w-64 z-50">
+                {/* Centering the Avatar */}
+                <div className="flex justify-center">
+                  <Avatar />
+                </div>
+
+                {/* Centering Name & Email */}
+                <div className="text-center mt-2">
+                  <div className="font-medium text-black">
+                    {currentUser?.name}
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-500">
+                    {currentUser?.email}
+                  </div>
+                </div>
+
+                {/* Aligning Edit Button to the Left */}
+                <button
+                  onClick={handleEditClick}
+                  className="mt-2 text-blue-500 hover:text-blue-700 text-xs sm:text-sm text-left w-full"
+                >
+                  Edit
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Project Selection */}
@@ -107,7 +147,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
           <div className="flex-grow flex flex-col items-center gap-2">
             {tabs.map((tab) => (
               <button
-                key={tab.value} // ✅ Unique key fix
+                key={tab.value}
                 onClick={() => handleTabClick(tab.value)}
                 className="text-lg py-1 px-6 rounded-md transition-colors duration-200 text-gray-500 hover:bg-blue-500 hover:text-white"
               >
@@ -133,6 +173,9 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
           <GiHamburgerMenu size={24} />
         </button>
       )}
+
+      {/* Edit User Modal */}
+      {/* {isModalOpen && <EditUserModal onClose={() => setIsModalOpen(false)} />} */}
     </>
   );
 };

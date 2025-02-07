@@ -59,20 +59,16 @@ export default function SignUp() {
   return (
     <div className="flex min-h-screen">
       {/* Left Section */}
-      <div className="hidden md:flex flex-col justify-center items-center w-1/2 bg-gray-100 dark:bg-gray-900">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Join Us!
-        </h2>
-        <p className="mt-4 text-gray-700 dark:text-gray-300 text-center">
+      <div className="hidden md:flex flex-col justify-center items-center w-1/2 bg-blue-600 text-white">
+        <h2 className="text-3xl font-bold">Join Us!</h2>
+        <p className="mt-4 text-center">
           Create an account to start managing your tasks efficiently.
         </p>
       </div>
 
       {/* Right Section - Sign Up Form */}
-      <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-          Sign Up
-        </h2>
+      <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8 bg-white">
+        <h2 className="text-2xl font-bold text-blue-600">Sign Up</h2>
         <form
           className="w-full max-w-sm mt-6 space-y-4"
           onSubmit={(e) => {
@@ -84,7 +80,7 @@ export default function SignUp() {
           <input
             type="text"
             placeholder="Name"
-            className="w-full px-4 py-2 border rounded-md bg-gray-200 dark:bg-gray-800 dark:text-white"
+            className="w-full px-4 py-2 border rounded-md bg-white text-black"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -93,7 +89,7 @@ export default function SignUp() {
           <input
             type="email"
             placeholder="Email"
-            className="w-full px-4 py-2 border rounded-md bg-gray-200 dark:bg-gray-800 dark:text-white"
+            className="w-full px-4 py-2 border rounded-md bg-white text-black"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -103,13 +99,13 @@ export default function SignUp() {
             <input
               type={passwordVisible ? "text" : "password"}
               placeholder="Password"
-              className="w-full px-4 py-2 border rounded-md bg-gray-200 dark:bg-gray-800 dark:text-white"
+              className="w-full px-4 py-2 border rounded-md bg-white text-black"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             <div
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-blue-600"
               onClick={() => setPasswordVisible(!passwordVisible)}
             >
               {passwordVisible ? <FiEyeOff /> : <FiEye />}
@@ -120,13 +116,13 @@ export default function SignUp() {
             <input
               type={confirmPasswordVisible ? "text" : "password"}
               placeholder="Confirm Password"
-              className="w-full px-4 py-2 border rounded-md bg-gray-200 dark:bg-gray-800 dark:text-white"
+              className="w-full px-4 py-2 border rounded-md bg-white text-black"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
             <div
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-blue-600"
               onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
             >
               {confirmPasswordVisible ? <FiEyeOff /> : <FiEye />}
@@ -140,7 +136,7 @@ export default function SignUp() {
             {isLoading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
-        <p className="mt-4 text-gray-600 dark:text-gray-300">
+        <p className="mt-4 text-black">
           Already have an account?{" "}
           <Link href="/signin" className="text-blue-600">
             Sign In

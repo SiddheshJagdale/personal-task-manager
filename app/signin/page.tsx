@@ -58,21 +58,17 @@ export default function SignIn() {
 
   return (
     <div className="flex min-h-screen">
-      {/* Left Section */}
-      <div className="hidden md:flex flex-col justify-center items-center w-1/2 bg-gray-100 dark:bg-gray-900">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Welcome Back!
-        </h2>
-        <p className="mt-4 text-gray-700 dark:text-gray-300 text-center">
+      {/* Left Section - Blue background */}
+      <div className="hidden md:flex flex-col justify-center items-center w-1/2 bg-blue-600">
+        <h2 className="text-3xl font-bold text-white">Welcome Back!</h2>
+        <p className="mt-4 text-white text-center">
           Sign in to continue managing your tasks efficiently.
         </p>
       </div>
 
-      {/* Right Section - Sign In Form */}
-      <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-          Sign In
-        </h2>
+      {/* Right Section - White background */}
+      <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8 bg-white">
+        <h2 className="text-2xl font-bold text-black">Sign In</h2>
         <form
           className="w-full max-w-sm mt-6 space-y-4"
           onSubmit={handleSubmit}
@@ -80,14 +76,14 @@ export default function SignIn() {
           <input
             type="email"
             placeholder="Email"
-            className="w-full px-4 py-2 border rounded-md bg-gray-200 dark:bg-gray-800 dark:text-white"
+            className="w-full px-4 py-2 border rounded-md bg-white text-black"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
-            className="w-full px-4 py-2 border rounded-md bg-gray-200 dark:bg-gray-800 dark:text-white"
+            className="w-full px-4 py-2 border rounded-md bg-white text-black"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -99,7 +95,7 @@ export default function SignIn() {
             {isPending ? "Signing In..." : "Sign In"}
           </button>
         </form>
-        <p className="mt-4 text-gray-600 dark:text-gray-300">
+        <p className="mt-4 text-black">
           Don&apos;t have an account?{" "}
           <Link href="/signup" className="text-blue-600">
             Sign Up

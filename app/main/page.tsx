@@ -37,7 +37,7 @@ const Main = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-full min-h-screen bg-gray-400 w-full shadow-lg">
+    <div className="flex flex-col md:flex-row h-full min-h-screen bg-gray-500 w-full shadow-lg">
       {/* Sidebar */}
       <aside className="w-full md:w-64 lg:w-72 xl:w-80 p-1 md:p-2">
         <Sidebar onTabChange={handleTabChange} />
