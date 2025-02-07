@@ -8,7 +8,7 @@ import ImageUpload from "@/components/ImageUpload";
 import useEditUser from "@/zustand/useUserStore";
 
 const EditUserModal = () => {
-  const { data: currentUser } = useCurrentUser();
+  const { data: currentUser, mutate } = useCurrentUser();
 
   const userEditModal = useEditUser();
 
@@ -22,6 +22,7 @@ const EditUserModal = () => {
       setName(currentUser?.name);
       setEmail(currentUser?.email);
       setId(currentUser?.id);
+      setProfileImage(currentUser?.profileImage);
     }
   }, [currentUser]);
 
@@ -30,6 +31,7 @@ const EditUserModal = () => {
     onSuccess: () => {
       toast.success("User updated successfully!");
       userEditModal.onClose();
+      mutate();
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {

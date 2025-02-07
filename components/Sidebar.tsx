@@ -93,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
             onMouseEnter={handleUserHover}
             onMouseLeave={handleUserLeave}
           >
-            <Avatar />
+            <Avatar image={currentUser?.profileImage} />
             <div className="text-black text-center">
               <div className="text-lg font-medium">{currentUser?.name}</div>
             </div>
@@ -103,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
               <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 p-4 bg-white border shadow-lg rounded-lg w-48 sm:w-56 lg:w-64 z-50">
                 {/* Centering the Avatar */}
                 <div className="flex justify-center">
-                  <Avatar />
+                  <Avatar image={currentUser?.profileImage} />
                 </div>
 
                 {/* Centering Name & Email */}

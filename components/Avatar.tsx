@@ -1,15 +1,13 @@
 import Image from "next/image";
 import Img1 from "@/utils/images/user_placeholder.png";
-import useCurrentUser from "@/hooks/useCurrentuser";
 
 interface AvatarProps {
-  userId?: string;
+  image: string;
   isLarge?: boolean;
   hasBorder?: boolean;
 }
 
-const Avatar: React.FC<AvatarProps> = ({ isLarge, hasBorder }) => {
-  const { data: currentUser } = useCurrentUser();
+const Avatar: React.FC<AvatarProps> = ({ isLarge, hasBorder, image }) => {
   return (
     <div
       className={`
@@ -28,7 +26,7 @@ const Avatar: React.FC<AvatarProps> = ({ isLarge, hasBorder }) => {
           objectFit: "cover",
           borderRadius: "100%",
         }}
-        src={currentUser?.profileImage || Img1}
+        src={image || Img1}
         alt="Avatar"
       />
     </div>
