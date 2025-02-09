@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ const Hero: React.FC<HeroProps> = ({ name }) => {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center h-full w-full text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+    <section className="flex flex-col justify-center items-center h-full w-full gap-2 text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
       <h2 className="text-5xl font-bold mb-4">
         {name ? `Welcome back, ${name}!` : "Organize Your Work, Your Way"}
       </h2>

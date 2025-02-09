@@ -10,17 +10,19 @@ import { useProjects } from "@/hooks/useProjects";
 
 // Define the priority type explicitly
 type Priority = "low" | "medium" | "high";
-type Status = "ongoing" | "completed" ;
+type Status = "ongoing" | "completed";
 
 const AddProjectModal = () => {
   const {
     newProject,
     setNewProjectData,
+    
+    isAddProjectOpen,
+    closeAddProject,
     resetNewProject,
     addProject: addProjectToStore,
   } = useProjectStore();
   const { data: currentUser } = useCurrentUser();
-  const { isAddProjectOpen, closeAddProject } = useProjectStore();
   const { refetch } = useProjects(currentUser?.id);
 
   const title = "Add New Project";
@@ -36,7 +38,6 @@ const AddProjectModal = () => {
       refetch();
     },
     onError: (error: Error) => {
-      // Used a specific Error type here
       console.error("Error adding project:", error);
       toast.error(error.message || "Failed to create project");
     },

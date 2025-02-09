@@ -11,7 +11,7 @@ const AddTaskButton = () => {
   }, [openAddTask]);
   return (
     <div
-      className="hidden lg:flex flex-col justify-center gap-2 bg-blue-500 hover:bg-blue-600  duration-100 px-4 py-2 rounded-lg shadow-lg max-w-full sm:max-w-xs md:max-w-sm lg:max-w-md mb-4 hover:shadow-xl hover:scale-105 transition-all cursor-pointer"
+      className=" flex flex-col justify-center gap-2 bg-blue-500 hover:bg-blue-600  duration-100 px-4 py-2 rounded-lg shadow-lg max-w-full sm:max-w-xs md:max-w-sm lg:max-w-md mb-4 hover:shadow-xl hover:scale-105 transition-all cursor-pointer"
       onClick={handleClick}
     >
       <button className="flex items-center justify-center py-1 w-full">
