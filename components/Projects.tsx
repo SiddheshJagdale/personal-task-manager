@@ -56,9 +56,7 @@ const Projects = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 px-4 py-3">
-      {projects?.length === 0 ? (
-        <AddProjectButton />
-      ) : (
+      {projects?.length !== 0 &&
         projects?.map((project) => (
           <ProjectCard
             id={project.id}
@@ -69,8 +67,7 @@ const Projects = () => {
             status={project.status as "ongoing" | "completed"} // Ensure correct type
             priority={project.priority as "low" | "medium" | "high"} // Ensure correct type
           />
-        ))
-      )}
+        ))}
       <AddProjectButton />
     </div>
   );
