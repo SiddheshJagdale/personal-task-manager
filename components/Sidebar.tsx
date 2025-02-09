@@ -100,14 +100,14 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
 
             {/* Hovered User Information */}
             {showUserInfo && (
-              <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 p-4 bg-white border shadow-lg rounded-lg w-48 sm:w-56 lg:w-64 z-50">
+              <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 p-4 bg-white border shadow-lg rounded-lg w-52 sm:w-60 lg:w-64 z-50">
                 {/* Centering the Avatar */}
                 <div className="flex justify-center">
                   <Avatar image={currentUser?.profileImage} />
                 </div>
 
                 {/* Centering Name & Email */}
-                <div className="text-center mt-2">
+                <div className="text-center mt-2 flex flex-col">
                   <div className="font-medium text-black">
                     {currentUser?.name}
                   </div>
