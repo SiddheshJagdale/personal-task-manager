@@ -13,7 +13,7 @@ import { useProjectStore } from "@/zustand/useProjectStore";
 import { deleteProject } from "@/ReactQuery/mutations/deleteProject";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
-import { format } from "date-fns"; // Import date-fns for date formatting
+import { format } from "date-fns";
 
 interface ProjectCardProps {
   id: string;
