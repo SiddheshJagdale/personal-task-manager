@@ -128,20 +128,22 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
           </div>
 
           {/* Project Selection */}
-          <div className="mb-4 flex items-center justify-center w-full ">
-            <select
-              id="project-select"
-              value={selectedProjectId || ""}
-              onChange={handleProjectChange}
-              className="mt-2 p-2 bg-white border max-w-lg rounded-md  text-black focus:outline-none focus:ring-2 focus:ring-blue-500 border-blue-300"
-            >
-              {projects?.map((project, index) => (
-                <option key={index} value={project.id} className="text-black">
-                  {project.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          {selectedProjectId !== null && (
+            <div className="mb-4 flex items-center justify-center w-full ">
+              <select
+                id="project-select"
+                value={selectedProjectId || ""}
+                onChange={handleProjectChange}
+                className="mt-2 p-2 bg-white border max-w-lg rounded-md  text-black focus:outline-none focus:ring-2 focus:ring-blue-500 border-blue-300"
+              >
+                {projects?.map((project, index) => (
+                  <option key={index} value={project.id} className="text-black">
+                    {project.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
           {/* Navigation Tabs */}
           <div className="flex-grow flex flex-col items-center gap-2">
