@@ -128,8 +128,9 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
           </div>
 
           {/* Project Selection */}
-          {selectedProjectId !== null && (
-            <div className="mb-4 flex items-center justify-center w-full ">
+
+          <div className="mb-4 flex items-center justify-center w-full ">
+            {selectedProjectId !== null && (
               <select
                 id="project-select"
                 value={selectedProjectId || ""}
@@ -142,8 +143,8 @@ const Sidebar: React.FC<SidebarProps> = ({ onTabChange }) => {
                   </option>
                 ))}
               </select>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Navigation Tabs */}
           <div className="flex-grow flex flex-col items-center gap-2">

@@ -2,7 +2,7 @@
 
 import { useCallback } from "react";
 import { signOut } from "next-auth/react";
-import Button from "@/components/Button"; 
+import Button from "@/components/Button";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +11,7 @@ const LogoutButton = () => {
 
   const handleClick = useCallback(async () => {
     try {
-      await signOut();
+      await signOut({ redirect: false });
       toast.success("Logged out");
       router.push("/");
     } catch (error) {
