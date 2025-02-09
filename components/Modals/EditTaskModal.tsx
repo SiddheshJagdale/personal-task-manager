@@ -15,6 +15,7 @@ const EditTaskModal = () => {
     resetNewTask,
     editTaskData,
     setEditTaskData,
+    updateTask: UpdateTask,
   } = useTaskStore();
   const { selectedProjectId } = useProjectStore();
   const { data: currentUser } = useCurrentUser();
@@ -63,6 +64,13 @@ const EditTaskModal = () => {
       setIsImportant(isImportant);
       setProjectId(projectId as string);
     }
+    UpdateTask(id, {
+      title: title,
+      description: description,
+      dueDate: dueDate,
+      completed: completed,
+      isImportant: isImportant,
+    });
   }, [isEditTaskOpen, editTaskData]);
 
   const handleSubmit = useCallback(async () => {

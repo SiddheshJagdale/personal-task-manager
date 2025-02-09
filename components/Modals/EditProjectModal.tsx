@@ -16,6 +16,7 @@ const EditProjectModal = () => {
     closeEditProject,
     resetNewProject,
     editProjectData,
+    updateProject: UpdateProject,
   } = useProjectStore(); // Access editProjectData from Zustand
 
   const { data: currentUser } = useCurrentUser();
@@ -64,13 +65,20 @@ const EditProjectModal = () => {
 
     try {
       await mutateAsync({
-        id: id, // Use the project ID from Zustand
+        id: id,
         name,
         description,
         priority,
         status,
-        createdAt: editProjectData?.createdAt, // Keep the original timestamp
+        createdAt: editProjectData?.createdAt,
         userId: currentUser?.id, // Ensure it's associated with the logged-in user
+      });
+      UpdateProject(id, {
+        name: name,
+        description: description,
+        priority: priority,
+        status: status,
+        createdAt: editProjectData?.createdAt,
       });
     } catch (error) {
       if (error instanceof Error) {
@@ -82,7 +90,7 @@ const EditProjectModal = () => {
     description,
     priority,
     status,
-    id, 
+    id,
     currentUser?.id,
     mutateAsync,
     editProjectData?.createdAt,

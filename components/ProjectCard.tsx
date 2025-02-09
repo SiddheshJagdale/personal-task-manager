@@ -44,7 +44,11 @@ const ProjectCard = ({
   priority,
 }: ProjectCardProps) => {
   const { data: currentUser } = useCurrentUser();
-  const { setSelectedProject, selectedProjectId } = useProjectStore();
+  const {
+    setSelectedProject,
+    selectedProjectId,
+    deleteProject: DeleteProject,
+  } = useProjectStore();
   const { openEditProject } = useProjectStore();
 
   const handleEdit = () => {
@@ -79,6 +83,7 @@ const ProjectCard = ({
     }
     try {
       await mutateAsync(id);
+      DeleteProject(id);
     } catch (err) {
       console.log(err);
       toast.error(`Error: ${err}`);

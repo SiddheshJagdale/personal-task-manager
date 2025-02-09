@@ -33,7 +33,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
   duedate,
   id,
 }) => {
-  const { openEditTask, setEditTaskData } = useTaskStore(); // Zustand function
+  const {
+    openEditTask,
+    setEditTaskData,
+    deleteTask: DeleteTask,
+  } = useTaskStore(); // Zustand function
   const { selectedProjectId } = useProjectStore();
   const { data: currentUser } = useCurrentUser();
   const { refetch } = useTasks(selectedProjectId as string, currentUser?.id);
@@ -41,6 +45,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
     mutationFn: deleteTask,
     onSuccess: () => {
       toast.success("Task deleted successfully!");
+      DeleteTask(id);
       refetch();
     },
     onError: (error: unknown) => {

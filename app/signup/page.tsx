@@ -1,26 +1,41 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { v4 as uuidv4 } from "uuid";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { registerUser } from "@/ReactQuery/mutations/registerUser"; // Import the registerUser function
-import { RegisterUserData } from "@/ReactQuery/types/registerUser"; // Import the data types
+import { registerUser } from "@/ReactQuery/mutations/registerUser";
+import { RegisterUserData } from "@/ReactQuery/types/registerUser";
+import { useMutation } from "@tanstack/react-query";
+import { v4 as uuid } from "uuid";
 
 export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  const id = uuidv4();
   const router = useRouter();
 
-  const handleSubmit = useCallback(async () => {
-    // Input validation
+  const mutation = useMutation({
+    mutationFn: registerUser,
+    onSuccess: () => {
+      toast.success("User created successfully!");
+      router.push("/signin");
+    },
+    onError: (error) => {
+      if (error instanceof Error) {
+        toast.error("User already exists!");
+      } else {
+        toast.error("Something went wrong! Please try again.");
+      }
+    },
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (!name) return toast.error("Name cannot be empty");
     if (!email) return toast.error("Email cannot be empty");
     if (!password) return toast.error("Password cannot be empty");
@@ -30,31 +45,9 @@ export default function SignUp() {
     if (password !== confirmPassword)
       return toast.error("Passwords do not match");
 
-    const userData: RegisterUserData = {
-      id,
-      name,
-      email,
-      password,
-    };
-
-    try {
-      setIsLoading(true);
-      const response = await registerUser(userData); // Use the imported registerUser function
-
-      if (response?.user) {
-        toast.success("User created successfully!");
-        router.push("/signin");
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error("User already exists!");
-      } else {
-        toast.error("Something went wrong! Please try again.");
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }, [name, email, password, confirmPassword, router, id]);
+    const userData: RegisterUserData = { id: uuid(), name, email, password };
+    mutation.mutate(userData);
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -71,12 +64,8 @@ export default function SignUp() {
         <h2 className="text-2xl font-bold text-black">Sign Up</h2>
         <form
           className="w-full max-w-sm mt-6 space-y-4"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit();
-          }}
+          onSubmit={handleSubmit}
         >
-          {/* Name Field */}
           <input
             type="text"
             placeholder="Name"
@@ -85,7 +74,6 @@ export default function SignUp() {
             onChange={(e) => setName(e.target.value)}
             required
           />
-          {/* Email Field */}
           <input
             type="email"
             placeholder="Email"
@@ -94,7 +82,6 @@ export default function SignUp() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          {/* Password Field */}
           <div className="relative">
             <input
               type={passwordVisible ? "text" : "password"}
@@ -111,7 +98,6 @@ export default function SignUp() {
               {passwordVisible ? <FiEyeOff /> : <FiEye />}
             </div>
           </div>
-          {/* Confirm Password Field */}
           <div className="relative">
             <input
               type={confirmPasswordVisible ? "text" : "password"}
@@ -131,9 +117,9 @@ export default function SignUp() {
           <button
             className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
             type="submit"
-            disabled={isLoading}
+            disabled={mutation.isPending}
           >
-            {isLoading ? "Signing Up..." : "Sign Up"}
+            {mutation.isPending ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
         <p className="mt-4 text-black">
